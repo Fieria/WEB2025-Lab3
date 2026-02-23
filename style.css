@@ -480,3 +480,133 @@ body {
         padding: 8px;
     }
 }
+
+/* Медиа-запрос для узких экранов телефонов */
+@media (max-width: 400px) {
+    /* Уменьшаем игровое поле на 35% */
+    .game-wrapper {
+        width: 325px;
+        padding: 10px;
+    }
+    
+    .grid-container {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        gap: 7px;
+    }
+    
+    /* Уменьшаем кнопки на 30% */
+    .game-button {
+        width: 50px;
+        height: 50px;
+        font-size: 14px;
+    }
+    
+    .game-button.game-button-wide {
+        width: 112px;
+        min-width: 112px;
+    }
+    
+    /* Уменьшаем заголовок на 30% */
+    .game-title {
+        font-size: 50px;
+        line-height: 50px;
+    }
+    
+    .header-divider {
+        width: 2px;
+        height: 50px;
+        margin: 0 15px;
+    }
+    
+    .header-cell {
+        width: 115px;
+        height: 50px;
+        font-size: 50px;
+        line-height: 50px;
+        padding-right: 8px;
+    }
+    
+    /* Уменьшаем размер плиток */
+    .tile {
+        font-size: 24px;
+    }
+    
+    .tile-128,
+    .tile-256,
+    .tile-512 {
+        font-size: 21px;
+    }
+    
+    .tile-1024,
+    .tile-2048 {
+        font-size: 18px;
+    }
+}
+
+/* Медиа-запрос для очень узких экранов */
+@media (max-width: 320px) {
+    /* Уменьшаем игровое поле еще больше на 45% от оригинала */
+    .game-wrapper {
+        width: 275px;
+        padding: 8px;
+    }
+    
+    .grid-container {
+        top: 8px;
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+        gap: 5px;
+    }
+    
+    /* Уменьшаем кнопки на 40% */
+    .game-button {
+        width: 43px;
+        height: 43px;
+        font-size: 12px;
+    }
+    
+    .game-button.game-button-wide {
+        width: 96px;
+        min-width: 96px;
+    }
+    
+    /* Уменьшаем заголовок на 40% */
+    .game-title {
+        font-size: 43px;
+        line-height: 43px;
+    }
+    
+    .header-divider {
+        width: 2px;
+        height: 43px;
+        margin: 0 12px;
+    }
+    
+    .header-cell {
+        width: 99px;
+        height: 43px;
+        font-size: 43px;
+        line-height: 43px;
+        padding-right: 6px;
+    }
+    
+    /* Уменьшаем размер плиток */
+    .tile {
+        font-size: 20px;
+    }
+    
+    .tile-128,
+    .tile-256,
+    .tile-512 {
+        font-size: 18px;
+    }
+    
+    .tile-1024,
+    .tile-2048 {
+        font-size: 15px;
+    }
+}
