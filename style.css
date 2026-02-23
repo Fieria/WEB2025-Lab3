@@ -16,24 +16,40 @@ body {
 
 .container {
     width: 100%;
-    max-width: 500px;
+    max-width: 700px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.main-content {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+}
+
+.left-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 500px;
+    flex-shrink: 0;
+}
+
 /* Шапка с названием игры */
 .header {
-    width: 100%;
+    width: 500px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 30px;
-    gap: 0;
 }
 
 .game-title {
     font-size: 72px;
+    line-height: 72px;
     font-weight: bold;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -59,17 +75,48 @@ body {
     padding-right: 10px;
 }
 
-.header-controls {
+.buttons-container {
     display: flex;
     gap: 10px;
+    align-self: flex-start;
+    margin-top: 0;
+}
+
+.game-button {
+    width: 72px;
+    height: 72px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    justify-content: center;
     align-items: center;
+}
+
+.game-button:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.game-button:active {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.game-button.game-button-wide {
+    width: 160px;
+    min-width: 160px;
+    flex-shrink: 0;
+    align-self: flex-start;
 }
 
 /* Обертка для игрового поля */
 .game-wrapper {
     position: relative;
-    width: 100%;
-    max-width: 500px;
+    width: 500px;
     aspect-ratio: 1 / 1;
     background-color: #c7c7c7;
     border-radius: 10px;
