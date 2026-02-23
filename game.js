@@ -689,14 +689,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (gameWrapper) {
         gameWrapper.addEventListener('touchstart', function(event) {
+            // Предотвращаем скролл страницы
+            event.preventDefault();
             touchStartX = event.changedTouches[0].screenX;
             touchStartY = event.changedTouches[0].screenY;
-        }, { passive: true });
+        }, { passive: false });
+        
+        gameWrapper.addEventListener('touchmove', function(event) {
+            // Предотвращаем скролл страницы во время движения
+            event.preventDefault();
+        }, { passive: false });
         
         gameWrapper.addEventListener('touchend', function(event) {
+            // Предотвращаем скролл страницы
+            event.preventDefault();
             touchEndX = event.changedTouches[0].screenX;
             touchEndY = event.changedTouches[0].screenY;
             handleSwipe();
-        }, { passive: true });
+        }, { passive: false });
     }
 });
