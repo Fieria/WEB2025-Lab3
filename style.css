@@ -541,6 +541,14 @@ body {
         gap: 7px;
     }
     
+    .tiles-container {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        gap: 7px;
+    }
+    
     /* Уменьшаем кнопки на 30% */
     .game-button {
         width: 50px;
@@ -599,6 +607,14 @@ body {
     }
     
     .grid-container {
+        top: 8px;
+        left: 8px;
+        right: 8px;
+        bottom: 8px;
+        gap: 5px;
+    }
+    
+    .tiles-container {
         top: 8px;
         left: 8px;
         right: 8px;
