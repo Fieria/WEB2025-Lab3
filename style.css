@@ -98,5 +98,14 @@ body {
     transition: all 0.15s ease-in-out;
 }
 
-
+/* Адаптивность для мобильных устройств */
+@media (max-width: 600px) {
+    .game-title {
+        font-size: 48px;
+    }
+    
+    .tile {
+        font-size: 24px;
+    }
+}
 
