@@ -9,47 +9,55 @@
 <body>
     <div class="container">
         <div class="main-content">
-            <button class="game-button game-button-wide" id="leaders-button">leaders</button>
-            <div class="left-section">
+            <div class="upper-section">
+                <button class="game-button game-button-wide" id="leaders-button">leaders</button>
+                
                 <header class="header">
                     <h1 class="game-title">2048</h1>
                     <div class="header-divider"></div>
                     <div class="header-cell"></div>
                 </header>
                 
-                <div class="game-wrapper">
-                    <div class="grid-container">
-                        <!-- 16 пустых ячеек-подложек -->
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                        <div class="grid-cell"></div>
-                    </div>
-                    
-                    <!-- Слой для динамических плиток -->
-                    <div class="tiles-container" id="tiles-container">
-                        <!-- Плитки будут добавляться динамически через JavaScript -->
-                    </div>
+                <div class="buttons-container">
+                    <!-- Кнопка "back" - возврат к предыдущему состоянию -->
+                    <button class="game-button" id="back-button" type="button">back</button>
+                    <!-- Кнопка "new" - новая игра -->
+                    <button class="game-button" id="new-button" type="button">new</button>
                 </div>
             </div>
             
-            <div class="buttons-container">
-                <!-- Кнопка "back" - возврат к предыдущему состоянию -->
-                <button class="game-button" id="back-button" type="button">back</button>
-                <!-- Кнопка "new" - новая игра -->
-                <button class="game-button" id="new-button" type="button">new</button>
+            <div class="game-wrapper">
+                <div class="grid-container">
+                    <!-- 16 пустых ячеек-подложек -->
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                    <div class="grid-cell"></div>
+                </div>
+                
+                <!-- Слой для динамических плиток -->
+                <div class="tiles-container" id="tiles-container">
+                    <!-- Плитки будут добавляться динамически через JavaScript -->
+                </div>
+            </div>
+            
+            <!-- Кнопки под игровым полем (для узких экранов) -->
+            <div class="buttons-bottom">
+                <button class="game-button game-button-wide" id="leaders-button-bottom">leaders</button>
+                <button class="game-button" id="back-button-bottom" type="button">back</button>
+                <button class="game-button" id="new-button-bottom" type="button">new</button>
             </div>
         </div>
     </div>
