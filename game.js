@@ -3,6 +3,7 @@
 const GRID_SIZE = 4;
 let grid = [];
 let score = 0;
+let gameHistory = []; // История состояний игры для отмены ходов
 
 // Инициализация пустого поля
 function initGrid() {
@@ -46,6 +47,7 @@ function addRandomTile() {
 function initGame() {
     initGrid();
     score = 0;
+    gameHistory = []; // Очищаем историю при новой игре
     addRandomTile();
     addRandomTile();
     updateDisplay();
@@ -89,6 +91,34 @@ function copyGrid() {
         }
     }
     return newGrid;
+}
+
+// Сохранение текущего состояния игры
+function saveGameState() {
+    const state = {
+        grid: copyGrid(),
+        score: score
+    };
+    gameHistory.push(state);
+    // Ограничиваем историю последними 50 ходами
+    if (gameHistory.length > 50) {
+        gameHistory.shift();
+    }
+}
+
+// Восстановление предыдущего состояния игры
+function restorePreviousState() {
+    if (gameHistory.length === 0) {
+        return false; // Нет истории для восстановления
+    }
+    
+    const previousState = gameHistory.pop();
+    grid = previousState.grid;
+    score = previousState.score;
+    
+    updateDisplay();
+    updateScore();
+    return true;
 }
 
 // Проверка, изменилась ли сетка
@@ -269,6 +299,9 @@ function moveDown() {
 
 // Обработка хода
 function makeMove(direction) {
+    // Сохраняем текущее состояние перед ходом
+    saveGameState();
+    
     let moved = false;
     
     switch(direction) {
@@ -290,6 +323,9 @@ function makeMove(direction) {
         addRandomTile();
         updateDisplay();
         updateScore();
+    } else {
+        // Если ход не был сделан, удаляем сохраненное состояние
+        gameHistory.pop();
     }
 }
 
@@ -345,6 +381,43 @@ function handleSwipe() {
 // Инициализация при загрузке страницы
 document.addEventListener('DOMContentLoaded', function() {
     initGame();
+    
+    // Обработчик кнопки "back"
+    const backButton = document.getElementById('back-button');
+    const backButtonBottom = document.getElementById('back-button-bottom');
+    
+    function handleBackClick() {
+        const restored = restorePreviousState();
+        if (!restored) {
+            // Можно добавить визуальную обратную связь, если история пуста
+            console.log('Нет ходов для отмены');
+        }
+    }
+    
+    if (backButton) {
+        backButton.addEventListener('click', handleBackClick);
+    }
+    
+    if (backButtonBottom) {
+        backButtonBottom.addEventListener('click', handleBackClick);
+    }
+    
+    // Обработчик кнопки "new" - новая игра
+    const newButton = document.getElementById('new-button');
+    const newButtonBottom = document.getElementById('new-button-bottom');
+    
+    function handleNewClick() {
+        // Полностью перезапускаем игру
+        initGame();
+    }
+    
+    if (newButton) {
+        newButton.addEventListener('click', handleNewClick);
+    }
+    
+    if (newButtonBottom) {
+        newButtonBottom.addEventListener('click', handleNewClick);
+    }
     
     // Инициализация обработчиков свайпов
     const gameWrapper = document.querySelector('.game-wrapper');
