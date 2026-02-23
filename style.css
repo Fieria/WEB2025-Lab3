@@ -189,9 +189,70 @@ body {
     align-items: center;
     font-size: 35px;
     font-weight: bold;
-    color: #d4b5d0;
+    color: #776e65;
     pointer-events: auto;
     transition: all 0.15s ease-in-out;
+}
+
+/* Цвета для разных значений плиток */
+.tile-2 {
+    background-color: #bbffa2;
+    color: #717171;
+}
+
+.tile-4 {
+    background-color: #7eec89;
+    color: #717171;
+}
+
+.tile-8 {
+    background-color: #7acc99;
+    color: #717171;
+}
+
+.tile-16 {
+    background-color: #5fff9c;
+    color: #717171;
+}
+
+.tile-32 {
+    background-color: #99ffe0;
+    color: #717171;
+}
+
+.tile-64 {
+    background-color: #48eab9;
+    color: #717171;
+}
+
+.tile-128 {
+    background-color: #a4f4e5;
+    color: #717171;
+    font-size: 30px;
+}
+
+.tile-256 {
+    background-color: #3dcbd0;
+    color: #717171;
+    font-size: 30px;
+}
+
+.tile-512 {
+    background-color: #47b8fe;
+    color: #717171;
+    font-size: 30px;
+}
+
+.tile-1024 {
+    background-color: #446cff;
+    color: #717171;
+    font-size: 25px;
+}
+
+.tile-2048 {
+    background-color: #2148d5;
+    color: #717171;
+    font-size: 25px;
 }
 
 /* Контейнер для кнопок под игровым полем (скрыт по умолчанию) */
