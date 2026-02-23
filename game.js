@@ -48,6 +48,7 @@ function initGame() {
     initGrid();
     score = 0;
     gameHistory = []; // Очищаем историю при новой игре
+    hideGameOverModal(); // Скрываем модальное окно при новой игре
     addRandomTile();
     addRandomTile();
     updateDisplay();
@@ -323,9 +324,68 @@ function makeMove(direction) {
         addRandomTile();
         updateDisplay();
         updateScore();
+        // Проверяем, не закончилась ли игра
+        checkGameOver();
     } else {
         // Если ход не был сделан, удаляем сохраненное состояние
         gameHistory.pop();
+    }
+}
+
+// Проверка возможности хода
+function canMove() {
+    // Проверяем наличие пустых ячеек
+    for (let i = 0; i < GRID_SIZE; i++) {
+        for (let j = 0; j < GRID_SIZE; j++) {
+            if (grid[i][j] === 0) {
+                return true;
+            }
+        }
+    }
+    
+    // Проверяем возможность слияния соседних плиток
+    for (let i = 0; i < GRID_SIZE; i++) {
+        for (let j = 0; j < GRID_SIZE; j++) {
+            const current = grid[i][j];
+            // Проверяем правого соседа
+            if (j < GRID_SIZE - 1 && grid[i][j + 1] === current) {
+                return true;
+            }
+            // Проверяем нижнего соседа
+            if (i < GRID_SIZE - 1 && grid[i + 1][j] === current) {
+                return true;
+            }
+        }
+    }
+    
+    return false;
+}
+
+// Проверка окончания игры
+function checkGameOver() {
+    if (!canMove()) {
+        showGameOverModal();
+    }
+}
+
+// Показать модальное окно окончания игры
+function showGameOverModal() {
+    const modal = document.getElementById('game-over-modal');
+    if (modal) {
+        modal.classList.add('show');
+        // Очищаем поле ввода имени
+        const nameInput = document.getElementById('player-name-input');
+        if (nameInput) {
+            nameInput.value = '';
+        }
+    }
+}
+
+// Скрыть модальное окно окончания игры
+function hideGameOverModal() {
+    const modal = document.getElementById('game-over-modal');
+    if (modal) {
+        modal.classList.remove('show');
     }
 }
 
@@ -417,6 +477,35 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (newButtonBottom) {
         newButtonBottom.addEventListener('click', handleNewClick);
+    }
+    
+    // Обработчик кнопки "сохранить результат" в модальном окне
+    const saveResultButton = document.getElementById('save-result-button');
+    if (saveResultButton) {
+        saveResultButton.addEventListener('click', function() {
+            const nameInput = document.getElementById('player-name-input');
+            const playerName = nameInput ? nameInput.value.trim() : '';
+            
+            if (playerName) {
+                // Здесь можно добавить логику сохранения результата
+                // Например, в localStorage или на сервер
+                console.log('Сохранение результата:', playerName, score);
+                // Пока просто скрываем модальное окно
+                hideGameOverModal();
+            } else {
+                // Можно добавить визуальную обратную связь
+                alert('Пожалуйста, введите ваше имя');
+            }
+        });
+    }
+    
+    // Обработчик кнопки "новая игра" в модальном окне
+    const newGameModalButton = document.getElementById('new-game-modal-button');
+    if (newGameModalButton) {
+        newGameModalButton.addEventListener('click', function() {
+            hideGameOverModal();
+            initGame();
+        });
     }
     
     // Инициализация обработчиков свайпов
