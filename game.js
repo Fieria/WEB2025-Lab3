@@ -1,6 +1,7 @@
 // Инициализация игры 2048
 
 const GRID_SIZE = 4;
+const STORAGE_KEY = 'game2048_state';
 let grid = [];
 let score = 0;
 let gameHistory = []; // История состояний игры для отмены ходов
@@ -43,16 +44,65 @@ function addRandomTile() {
     }
 }
 
+// Сохранение состояния игры в localStorage
+function saveGameStateToStorage() {
+    const gameState = {
+        grid: grid,
+        score: score,
+        timestamp: Date.now()
+    };
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(gameState));
+    } catch (e) {
+        console.error('Ошибка сохранения в localStorage:', e);
+    }
+}
+
+// Загрузка состояния игры из localStorage
+function loadGameStateFromStorage() {
+    try {
+        const savedState = localStorage.getItem(STORAGE_KEY);
+        if (savedState) {
+            const gameState = JSON.parse(savedState);
+            grid = gameState.grid;
+            score = gameState.score;
+            return true;
+        }
+    } catch (e) {
+        console.error('Ошибка загрузки из localStorage:', e);
+    }
+    return false;
+}
+
+// Очистка сохраненного состояния
+function clearGameStateFromStorage() {
+    try {
+        localStorage.removeItem(STORAGE_KEY);
+    } catch (e) {
+        console.error('Ошибка очистки localStorage:', e);
+    }
+}
+
 // Инициализация игры - добавляем 2 начальные плитки
-function initGame() {
-    initGrid();
-    score = 0;
-    gameHistory = []; // Очищаем историю при новой игре
-    hideGameOverModal(); // Скрываем модальное окно при новой игре
-    addRandomTile();
-    addRandomTile();
-    updateDisplay();
-    updateScore();
+function initGame(forceNew = false) {
+    // Пытаемся загрузить сохраненное состояние, если не принудительно новая игра
+    if (!forceNew && loadGameStateFromStorage()) {
+        // Состояние загружено из localStorage
+        updateDisplay();
+        updateScore();
+        hideGameOverModal();
+    } else {
+        // Новая игра
+        initGrid();
+        score = 0;
+        gameHistory = []; // Очищаем историю при новой игре
+        hideGameOverModal(); // Скрываем модальное окно при новой игре
+        addRandomTile();
+        addRandomTile();
+        updateDisplay();
+        updateScore();
+        saveGameStateToStorage(); // Сохраняем новое состояние
+    }
 }
 
 // Обновление отображения поля
@@ -80,6 +130,8 @@ function updateScore() {
     if (headerCell) {
         headerCell.textContent = score;
     }
+    // Сохраняем состояние после обновления счета
+    saveGameStateToStorage();
 }
 
 // Копирование сетки
@@ -118,7 +170,7 @@ function restorePreviousState() {
     score = previousState.score;
     
     updateDisplay();
-    updateScore();
+    updateScore(); // updateScore уже сохраняет состояние
     return true;
 }
 
@@ -467,8 +519,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const newButtonBottom = document.getElementById('new-button-bottom');
     
     function handleNewClick() {
-        // Полностью перезапускаем игру
-        initGame();
+        // Полностью перезапускаем игру (принудительно новая игра)
+        clearGameStateFromStorage();
+        initGame(true);
     }
     
     if (newButton) {
@@ -504,7 +557,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (newGameModalButton) {
         newGameModalButton.addEventListener('click', function() {
             hideGameOverModal();
-            initGame();
+            clearGameStateFromStorage();
+            initGame(true);
         });
     }
     
