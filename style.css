@@ -96,6 +96,12 @@ body {
     justify-content: flex-end;
     align-items: center;
     padding-right: 10px;
+    font-size: 72px;
+    line-height: 72px;
+    font-weight: bold;
+    color: #ff7ff9b0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 2px;
 }
 
 .buttons-container {
@@ -139,7 +145,7 @@ body {
     position: relative;
     width: 500px;
     aspect-ratio: 1 / 1;
-    background-color: #c7c7c7;
+    background-color: #c7c7c773;
     border-radius: 10px;
     padding: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
@@ -160,7 +166,7 @@ body {
 
 /* Ячейки-подложки */
 .grid-cell {
-    background-color: #e8e8e8;
+    background-color: #f9f6f632;
     border-radius: 5px;
     min-height: 0;
     min-width: 0;
@@ -196,62 +202,62 @@ body {
 
 /* Цвета для разных значений плиток */
 .tile-2 {
-    background-color: #bbffa2;
+    background-color: #61d5ff;
     color: #717171;
 }
 
 .tile-4 {
-    background-color: #7eec89;
+    background-color: #1da4f8;
     color: #717171;
 }
 
 .tile-8 {
-    background-color: #7acc99;
+    background-color: #8bc3ff;
     color: #717171;
 }
 
 .tile-16 {
-    background-color: #5fff9c;
+    background-color: #5cabff;
     color: #717171;
 }
 
 .tile-32 {
-    background-color: #99ffe0;
-    color: #717171;
+    background-color: #1987fd;
+    color: #f0f0f0;
 }
 
 .tile-64 {
-    background-color: #48eab9;
-    color: #717171;
+    background-color: #2358f8;
+    color: #f0f0f0;
 }
 
 .tile-128 {
-    background-color: #a4f4e5;
-    color: #717171;
+    background-color: #6338ff;
+    color: #f0f0f0;
     font-size: 30px;
 }
 
 .tile-256 {
-    background-color: #3dcbd0;
+    background-color: #8f4eff;
     color: #717171;
     font-size: 30px;
 }
 
 .tile-512 {
-    background-color: #47b8fe;
+    background-color: #b921ff;
     color: #717171;
     font-size: 30px;
 }
 
 .tile-1024 {
-    background-color: #446cff;
+    background-color: #e121ff;
     color: #717171;
     font-size: 25px;
 }
 
 .tile-2048 {
-    background-color: #2148d5;
-    color: #717171;
+    background-color: #d521b7;
+    color: #f6f2f9;
     font-size: 25px;
 }
 
